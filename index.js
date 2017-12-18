@@ -37,7 +37,7 @@ var mesh
 function initMesh(){
   console.log("in loader")
   var loader = new THREE.OBJLoader();
-  loader.load('./models/cube.obj', function(object){
+  loader.load('./models/sock3.obj', function(object){
     console.log("in initMesh:", object)
     object.traverse(function(child){
       if(child instanceof THREE.Mesh){
