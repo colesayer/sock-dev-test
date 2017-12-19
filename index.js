@@ -28,9 +28,25 @@ const pointLight = new THREE.PointLight(0xffffff, 0.5)
 
 
 //texture
-var sockImageURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513562483/7frj09nru4zu_lorrln.png"
+var sockImageURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513642197/trex_kids_l0rknl.bmp"
 const textureLoader = new THREE.TextureLoader()
 var texture = textureLoader.load(sockImageURL)
+texture.offset.y -= 1;
+texture.wrapS = THREE.RepeatWrapping;
+texture.repeat.set(2, 2)
+// texture.wrapT = THREE.RepeatWrapping;
+// texture.repeat.x = 500
+// texture.repeat.y = 100
+// texture.offset.x = ( 300 / 100 ) * texture.repeat.x;
+// texture.offset.y = ( 400 / 100 ) * texture.repeat.y;
+
+var bumpMapURL = "http://res.cloudinary.com/dwnehv6tb/image/upload/v1513645812/TexturesCom_FabricWool0033_3_seamless_S_qs5bfs.jpg"
+const bumpTextureLoader = new THREE.TextureLoader()
+var clothBumpMap = bumpTextureLoader.load(bumpMapURL)
+
+clothBumpMap.wrapT = THREE.RepeatWrapping;
+clothBumpMap.wrapS = THREE.RepeatWrapping;
+clothBumpMap.repeat.set(4, 4)
 
 var mesh
 
@@ -42,6 +58,7 @@ function initMesh(){
     object.traverse(function(child){
       if(child instanceof THREE.Mesh){
         child.material.map = texture;
+        child.material.bumpMap = clothBumpMap;
       }
     })
     scene.add(object)
